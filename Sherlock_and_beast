@@ -1,0 +1,12 @@
+def decentNumber(n):
+    threes=0;fives=0
+    while (n%3>0) and (n>3):
+        fives+=5
+        n-=5
+    if n<3 and n!=0:
+        print(-1)
+        return -1
+    threes=n
+    stri='5'*threes+'3'*fives
+    print(stri)
+    return None
