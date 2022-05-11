@@ -1,23 +1,11 @@
-def ranker(ranked):
-    rankings=[]
-    for i in range(len(ranked)):
-        if i==0:
-            rankings.append(1)
-        else:
-            if ranked[i]==ranked[i-1]:
-                rankings.append(rankings[-1])
-            else:
-                rankings.append(rankings[-1]+1)
-    return rankings
-    
-
 def climbingLeaderboard(ranked, player):
-    lis=[]
-    for i in range(len(player)):
-        ranked.append(player[i])
-        ranked.sort(reverse=True)
-        a=ranked.index(player[i])
-        rankings=ranker(ranked)
-        lis.append(rankings[a])
-        ranked.pop(a)
-    return lis
+    rankedT=list(dict.fromkeys(ranked))
+    rankedT=tuple(rankedT[::-1])
+    length=len(rankedT)
+    res=[]
+    i=0
+    for play in player:
+        while (i<length) and rankedT[i]<=play:
+            i=i+1
+        res.append(length-i+1)
+    return res
